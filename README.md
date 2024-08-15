@@ -1,5 +1,3 @@
-Claro! Aqui está o `README.md` formatado em Markdown com base nas instruções que você forneceu:
-
 ---
 
 # Online Chat API
@@ -32,7 +30,7 @@ This project implements an online chat API inspired by the classic UOL chat, bui
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/online-chat-api.git
+    git clone https://github.com/rubensborges/bun-chat-api.git
     cd online-chat-api
     ```
 
@@ -122,15 +120,5 @@ This project implements an online chat API inspired by the classic UOL chat, bui
   - `routes/` - Contains the API route handlers.
   - `models/` - Defines the data structures for participants and messages.
   - `controllers/` - Contains the business logic for handling requests.
-
-## Contributing
-
-Contributions are welcome! Please fork the repository, create a new branch, and submit a pull request.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-Feel free to replace `yourusername` with your actual GitHub username in the clone instructions, and adjust any other details specific to your implementation.
+ 
+  - ## Inspired by the old but but 'Bate Papo UOL'
