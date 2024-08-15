@@ -24,6 +24,11 @@ const server = Bun.serve({
     if (method === "POST" && url.pathname === "/participants") {
       return handleAddParticipant(req);
     }
+
+    if (method === "GET" && url.pathname === "/participants") {
+      return handleGetParticipants();
+    }
+
     return new Response("Not Found", { status: 404 });
   },
 });
@@ -62,4 +67,8 @@ async function handleAddParticipant(req: Request) {
   messages.push(message);
 
   return new Response("ok", { status: 200 });
+}
+
+async function handleGetParticipants() {
+  return new Response(JSON.stringify(messages));
 }
