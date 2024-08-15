@@ -41,19 +41,5 @@ export function handleGetMessages(
   req: Request,
   params: URLSearchParams
 ): Response {
-  const limit = parseInt(params.get("limit") || "0", 10);
-  const user = req.headers.get("User");
-
-  const filteredMessages = messages.filter(
-    (message) =>
-      message.type === "message" ||
-      message.to === "Todos" ||
-      message.to === user ||
-      message.from === user
-  );
-
-  const limitedMessages =
-    limit > 0 ? filteredMessages.slice(-limit) : filteredMessages;
-
-  return new Response(JSON.stringify(limitedMessages));
+  return new Response();
 }
