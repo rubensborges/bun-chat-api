@@ -33,6 +33,11 @@ const server = Bun.serve({
       return handleAddMessages(req);
     }
 
+    if (method === "GET" && url.pathname === "/messages") {
+      const params = url.searchParams;
+      return handleGetMessages(req, params);
+    }
+
     return new Response("Not Found", { status: 404 });
   },
 });
@@ -102,4 +107,10 @@ async function handleAddMessages(req: Request) {
   messages.push(message);
 
   return new Response("ok", { status: 200 });
+}
+
+async function handleGetMessages(req: Request, params: URLSearchParams) {
+  const limit = params;
+
+  return new Response("", { status: 200 });
 }
