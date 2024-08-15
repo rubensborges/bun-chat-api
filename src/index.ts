@@ -29,6 +29,10 @@ const server = Bun.serve({
       return handleGetParticipants();
     }
 
+    if (method === "POST" && url.pathname === "/messages") {
+      return handleAddMessages(req);
+    }
+
     return new Response("Not Found", { status: 404 });
   },
 });
@@ -71,4 +75,31 @@ async function handleAddParticipant(req: Request) {
 
 async function handleGetParticipants() {
   return new Response(JSON.stringify(messages));
+}
+
+async function handleAddMessages(req: Request) {
+  const body: {
+    to?: string;
+    text?: string;
+    type?: "message" | "private_message";
+  } = await req.json();
+
+  const { to, text, type } = body;
+  const from = req.headers.get("User");
+
+  if (!from || !to || !text || !type) {
+    return new Response(null, { status: 400 });
+  }
+
+  const message: Message = {
+    from,
+    to,
+    text,
+    type,
+    time: dayjs().format("HH:mm:ss"),
+  };
+
+  messages.push(message);
+
+  return new Response("ok", { status: 200 });
 }
