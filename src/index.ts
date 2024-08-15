@@ -1,3 +1,19 @@
+interface Participant {
+  name: string;
+  lastStatus: number;
+}
+
+interface Message {
+  from: string;
+  to: string;
+  text: string;
+  type: "message" | "private_message" | "status";
+  time: string;
+}
+
+let participants: Participant[] = [];
+let messages: Message[] = [];
+
 const server = Bun.serve({
   port: 3001,
   fetch(req) {
