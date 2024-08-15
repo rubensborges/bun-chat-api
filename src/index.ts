@@ -9,3 +9,13 @@ const server = Bun.serve({
     }
   },
 });
+
+async function handleAddParticipant(req: Request) {
+  const body = await req.json();
+  const { name } = body;
+
+  if (!name) {
+    return new Response(null, { status: 400 });
+  }
+  return new Response("", { status: 200 });
+}
