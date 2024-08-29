@@ -39,5 +39,5 @@ export async function handleAddParticipant(req: Request) {
 }
 
 export async function handleGetParticipants() {
-  return new Response(JSON.stringify(messages));
+  return new Response(JSON.stringify(participants));
 }
