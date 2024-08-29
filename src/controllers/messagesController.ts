@@ -1,3 +1,4 @@
+import { JsxEmit } from "typescript";
 import { messages, type Message } from "../models/message";
 import { participants } from "../models/participant";
 import dayjs from "dayjs";
@@ -33,6 +34,7 @@ export async function handleAddMessages(req: Request): Promise<Response> {
   };
 
   messages.push(message);
+  console.log(messages);
 
   return new Response("ok", { status: 200 });
 }
@@ -41,5 +43,18 @@ export function handleGetMessages(
   req: Request,
   params: URLSearchParams
 ): Response {
-  return new Response();
+  const from = req.headers.get("User");
+  const limitParams = params.get("limit");
+
+  const filteredMessages = messages.filter(
+    (message) =>
+      message.to === "Todos" || message.from === from || message.to === from
+  );
+  if (limitParams) {
+    return new Response(
+      JSON.stringify(filteredMessages.slice(-parseInt(limitParams))),
+      { status: 200 }
+    );
+  }
+  return new Response(JSON.stringify(filteredMessages), { status: 200 });
 }
