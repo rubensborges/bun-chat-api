@@ -4,6 +4,12 @@ import { messagesRoutes } from "./routes/messages";
 const server = Bun.serve({
   port: 4000,
   fetch(req) {
+    if (req.method === "OPTIONS") {
+      return new Response(null, {
+        status: 200,
+        headers: { "Access-Control-Allow-Origin": "*" },
+      });
+    }
     const url = new URL(req.url);
 
     if (url.pathname.startsWith("/participants")) {
